@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDxONvcaGcMbBvY-RrVcXW8fzX30DqU4jI",
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
     authDomain: "india-post-cfab4.firebaseapp.com",
     databaseURL: "https://india-post-cfab4-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "india-post-cfab4",

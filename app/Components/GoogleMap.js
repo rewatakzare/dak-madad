@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 export default function GoogleMap({ apiKey }) {
   const mapRef = useRef(null)
   const [userLocation, setUserLocation] = useState(null)
+  const Api = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -27,7 +28,7 @@ export default function GoogleMap({ apiKey }) {
   useEffect(() => {
     if (userLocation && mapRef.current) {
       const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCKaombiYOuj6morYry2-Ff2RqL3Q0E1sI&libraries=places`
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${Api}&libraries=places`
       script.async = true
       script.onload = initMap
       document.head.appendChild(script)

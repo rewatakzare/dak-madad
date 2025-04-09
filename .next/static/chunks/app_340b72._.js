@@ -10,6 +10,7 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_refresh__.signature();
 'use client';
@@ -18,6 +19,7 @@ function GoogleMap({ apiKey }) {
     _s();
     const mapRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [userLocation, setUserLocation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const Api = ("TURBOPACK compile-time value", "AIzaSyDfmQd6UYihrGzsySSdnZYgTjxEKB2gKro");
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GoogleMap.useEffect": ()=>{
             if (navigator.geolocation) {
@@ -42,7 +44,7 @@ function GoogleMap({ apiKey }) {
         "GoogleMap.useEffect": ()=>{
             if (userLocation && mapRef.current) {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCKaombiYOuj6morYry2-Ff2RqL3Q0E1sI&libraries=places`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${Api}&libraries=places`;
                 script.async = true;
                 script.onload = initMap;
                 document.head.appendChild(script);
@@ -94,7 +96,7 @@ function GoogleMap({ apiKey }) {
             children: "Loading map..."
         }, void 0, false, {
             fileName: "[project]/app/Components/GoogleMap.js",
-            lineNumber: 78,
+            lineNumber: 79,
             columnNumber: 12
         }, this);
     }
@@ -103,7 +105,7 @@ function GoogleMap({ apiKey }) {
         className: "w-full h-full"
     }, void 0, false, {
         fileName: "[project]/app/Components/GoogleMap.js",
-        lineNumber: 81,
+        lineNumber: 82,
         columnNumber: 10
     }, this);
 }

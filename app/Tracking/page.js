@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import TrackingPageClient from "./trackingpage";
+import TrackingPageClient from "./TrackingPageClient";
 
 export default function page() {
   return (

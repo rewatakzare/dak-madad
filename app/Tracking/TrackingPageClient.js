@@ -9,7 +9,7 @@ import Sidebar from "../Components/Sidebar";
 import { FaTruck } from "react-icons/fa";
 import { IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io";
 
-export default function trackingpage() {
+export default function TrackingPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const trackingId = searchParams.get("page"); // Access query parameter 'page'

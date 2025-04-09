@@ -1,13 +1,21 @@
-import Home from './Components/Home'
-import Navigation from './Components/Navigation'
+'use client';
 
-function page() {
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+// Disable SSR for components that rely on `document`, `window`, etc.
+const Home = dynamic(() => import('./Components/Home'), { ssr: false });
+const Navigation = dynamic(() => import('./Components/Navigation'), { ssr: false });
+
+export default function Page() {
   return (
     <main>
-    <Navigation/>
-    <Home/>
+      <Suspense fallback={<div>Loading Navigation...</div>}>
+        <Navigation />
+      </Suspense>
+      <Suspense fallback={<div>Loading Home...</div>}>
+        <Home />
+      </Suspense>
     </main>
-  )
+  );
 }
-
-export default page

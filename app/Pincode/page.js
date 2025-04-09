@@ -76,7 +76,7 @@ export default function PincodePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-2">
           <p className="text-sm">

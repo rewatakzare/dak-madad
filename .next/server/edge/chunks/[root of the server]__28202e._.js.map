@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/middleware.js"],"sourcesContent":["\r\nimport { i18nMiddleware } from 'next-intl';\r\n\r\nexport function middleware(request) {\r\n  return i18nMiddleware(request);\r\n}\r\n\r\nexport const config = {\r\n  matcher: ['/', '/about', '/contact', '/dashboard'], // add the paths where you need i18n\r\n};\r\n"],"names":[],"mappings":";;;;AACA;;AAEO,SAAS,WAAW,OAAO;IAChC,OAAO,CAAA,GAAA,2IAAA,CAAA,iBAAc,AAAD,EAAE;AACxB;AAEO,MAAM,SAAS;IACpB,SAAS;QAAC;QAAK;QAAU;QAAY;KAAa;AACpD"}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

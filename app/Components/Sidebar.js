@@ -31,7 +31,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link href="/calculate-postage" className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded">
+            <Link href="Calcpostage" className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded">
             <BsFillPostageFill className='w-5 h-5'/>
               Calculate Postage
             </Link>

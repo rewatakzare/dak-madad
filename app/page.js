@@ -1,13 +1,13 @@
-import React from 'react'
 import Home from './Components/Home'
 import Navigation from './Components/Navigation'
+import LanguageSwitcher from './Components/LanguageSwitcher'
 
 function page() {
   return (
-    <div>
+    <main>
     <Navigation/>
     <Home/>
-    </div>
+    </main>
   )
 }
 

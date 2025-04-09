@@ -4,70 +4,135 @@ import axios from 'axios'
 import Link from 'next/link'
 import Sidebar from '../Components/Sidebar'
 
-const statesAndUTs = [
-  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
-  "Andaman and Nicobar Islands", "Chandigarh", 
-  "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir",
-  "Ladakh", "Lakshadweep", "Puducherry"
-]
+
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; 
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; 
+  return distance;
+};
 
 export default function PostOfficeLocator() {
-  const [state, setState] = useState('')
-  const [city, setCity] = useState('')
-  const [pincode, setPincode] = useState('')
-  const [postOffices, setPostOffices] = useState([])
-  const [error, setError] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const statesAndUTs = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+    "Andaman and Nicobar Islands", "Chandigarh", 
+    "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir",
+    "Ladakh", "Lakshadweep", "Puducherry"
+  ];
 
-  const handleStateChange = (e) => {
-    setState(e.target.value)
-    setCity('') // Reset city when state changes
-  }
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [postOffices, setPostOffices] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [googleApiKey] = useState('AIzaSyCKaombiYOuj6morYry2-Ff2RqL3Q0E1sI');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setPostOffices([])
-    setIsLoading(true)
+  
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log('Geolocation fetched:', position.coords); 
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        () => {
+          setError('Unable to retrieve your location.');
+        }
+      );
+    } else {
+      setError('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const searchPostOffices = async (lat, lon) => {
+    const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=5000&type=post_office&key=${googleApiKey}`;
 
     try {
-      if (pincode) {
-        const response = await axios.get(`https://api.postalpincode.in/pincode/${pincode}`)
-        const data = response.data[0]
-        if (data.Status === 'Success') {
-          setPostOffices(data.PostOffice || [])
-        } else {
-          setError('No post offices found for the given pincode.')
-        }
-      } else if (city) {
-        const response = await axios.get(`https://api.postalpincode.in/postoffice/${city}`)
-        const data = response.data[0]
-        if (data.Status === 'Success') {
-          setPostOffices(data.PostOffice || [])
-        } else {
-          setError('No post offices found for the given city.')
-        }
+      const response = await axios.get(placesUrl);
+      console.log('Google Places API response:', response.data); 
+
+      const data = response.data.results;
+      if (data.length > 0) {
+        const sortedPostOffices = data.map((office) => {
+          const distance = calculateDistance(lat, lon, office.geometry.location.lat, office.geometry.location.lng);
+          return { ...office, distance };
+        }).sort((a, b) => a.distance - b.distance);
+
+        console.log('Sorted post offices:', sortedPostOffices); 
+
+        setPostOffices([sortedPostOffices[0]]); 
       } else {
-        setError('Please enter a valid pincode or select a state and city.')
+        setError('No post offices found near your location.');
       }
     } catch (err) {
-      setError('Error fetching post office data. Please try again.')
-    } finally {
-      setIsLoading(false)
+      console.error('Error fetching post offices:', err); 
+      setError('Error fetching post office data. Please try again.');
     }
-  }
+  };
+
+  const handleStateChange = (e) => {
+    setState(e.target.value);
+    setCity(''); 
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setPostOffices([]);
+    setIsLoading(true);
+
+    try {
+      if (location) {
+        await searchPostOffices(location.latitude, location.longitude);
+      } else if (pincode) {
+        const response = await axios.get(`https://api.postalpincode.in/pincode/${pincode}`);
+        const data = response.data[0];
+        if (data.Status === 'Success') {
+          setPostOffices(data.PostOffice || []);
+        } else {
+          setError('No post offices found for the given pincode.');
+        }
+      } else if (city) {
+        const response = await axios.get(`https://api.postalpincode.in/postoffice/${city}`);
+        const data = response.data[0];
+        if (data.Status === 'Success') {
+          setPostOffices(data.PostOffice || []);
+        } else {
+          setError('No post offices found for the given city.');
+        }
+      } else {
+        setError('Please enter a valid pincode or select a state and city.');
+      }
+    } catch (err) {
+      console.error('Error in search:', err);
+      setError('Error fetching post office data. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleReset = () => {
-    setState('')
-    setCity('')
-    setPincode('')
-    setPostOffices([])
-    setError('')
-  }
+    setState('');
+    setCity('');
+    setPincode('');
+    setPostOffices([]);
+    setError('');
+    setLocation(null);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -83,7 +148,7 @@ export default function PostOfficeLocator() {
         <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6">
           <Sidebar />
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h1 className="text-3xl font-bold mb-4">Locate Nearest Post Office</h1>
+            <h1 className="text-3xl font-bold mb-4">Locate Post Office</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <p className="text-sm">* Indicates a required field.</p>
@@ -95,7 +160,7 @@ export default function PostOfficeLocator() {
                   <select
                     id="state"
                     value={state}
-                    onChange={(e) => setState(e.target.value)}
+                    onChange={handleStateChange}
                     className="mt-1 border block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
                   >
                     <option value="">Select a state</option>
@@ -115,7 +180,6 @@ export default function PostOfficeLocator() {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-
                   />
                 </div>
                 <h1 className='w-full text-center text-xl font-semibold'>Or</h1>
@@ -153,7 +217,7 @@ export default function PostOfficeLocator() {
 
             {postOffices.length > 0 && (
               <div className="mt-6">
-                <h2 className="text-lg font-semibold">Nearest Post Offices:</h2>
+                <h2 className="text-lg font-semibold">Nearest Post Office:</h2>
                 <ul className="mt-4 space-y-4">
                   {postOffices.map((office, index) => (
                     <li key={index} className="p-4 border rounded-md bg-green-100 text-green-700">

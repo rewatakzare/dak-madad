@@ -1,0 +1,176 @@
+{
+    "home": {
+      "title1": "Dak",
+      "title2": "Madad",
+      "subtitle": "Get your post by",
+      "trackPost": "Track Your Post",
+      "postIdPlaceholder": "Enter your post id here",
+      "submit": "Submit",
+      "trustText": "170 Years of Trust, Speed, and Reach",
+      "alerts": {
+        "invalidPostId": "Please enter a valid post ID."
+      },
+      "postalService": {
+        "title": "India Postal Service",
+        "description": "India Post, with its 170-year legacy, is the largest and most trusted postal network in the country. Operating across 23 postal circles, it ensures efficient delivery of letters, parcels, and financial services to every corner of India."
+      },
+      "pincode": {
+        "title": "Pincode",
+        "button": "Get Your Pin Code",
+        "description": "Easily find the Pincode for any location in India. Just enter the address, and get accurate, location-based results to ensure your mail reaches its destination hassle-free."
+      },
+      "postage": {
+        "title": "Calculate Postage",
+        "button": "Calculate Your Postage",
+        "description": "Plan your deliveries effortlessly! Use the postage calculator to estimate shipping costs by entering your package details."
+      },
+      "postOffice": {
+        "title": "Nearest Post Office",
+        "button": "Find Your Nearest Post Office",
+        "description": "Locate the nearest post office quickly and conveniently. Enter your Pincode to access detailed directions."
+      }
+    },
+    "Navigation": {
+    "title": "India Post",
+    "logoAlt": "India post logo",
+    "awareness": "Awareness",
+    "pincode": "Pincode",
+    "postOffice": "Post Office",
+    "tracking": "Tracking",
+    "postage": "Postage",
+    "switchLanguageLabel": "Switch language",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu"
+  },
+  "awareness" :{
+        "title": "Postal Awareness",
+        "subtitle": "Understanding the basics of India Post services and proper addressing",
+        "tabs": {
+          "addressing": "Addressing",
+          "services": "Services",
+          "guidelines": "Guidelines",
+          "digipin": "DigiPin"
+        },
+        "addressing": {
+          "title": "How to Write an Address",
+          "steps": [
+            {
+              "number": "1",
+              "heading": "Recipient's Name",
+              "description": "Write the full name clearly on the first line"
+            },
+            {
+              "number": "2",
+              "heading": "Building & Street",
+              "description": "Include house/flat number and street name"
+            },
+            {
+              "number": "3",
+              "heading": "Area & Landmark",
+              "description": "Mention area name and nearby landmark"
+            },
+            {
+              "number": "4",
+              "heading": "City & PIN Code",
+              "description": "Write city name followed by correct 6-digit PIN code"
+            },
+            {
+              "number": "5",
+              "heading": "State & Country",
+              "description": "End with state name and country"
+            }
+          ],
+          "example": {
+            "heading": "Example Address Format",
+            "address": [
+              "Mr. Rajesh Kumar",
+              "Flat 404, Sunshine Apartments",
+              "123 MG Road, Near City Mall",
+              "Indore - 452001",
+              "Madhya Pradesh, India"
+            ],
+            "tips": {
+              "heading": "Important Tips",
+              "items": [
+                "Write in clear, legible handwriting",
+                "Use block letters for PIN code",
+                "Include return address on the back",
+                "Avoid using abbreviations"
+              ]
+            }
+          }
+        },
+        "services": [
+          {
+            "title": "Speed Post",
+            "description": "Express delivery service for time-sensitive items",
+            "features": [
+              "Track & Trace",
+              "Proof of Delivery",
+              "Insurance Coverage"
+            ]
+          },
+          {
+            "title": "Registered Post",
+            "description": "Secure way to send important documents",
+            "features": [
+              "Acknowledgment",
+              "Signature Required",
+              "Compensation Available"
+            ]
+          },
+          {
+            "title": "Money Order",
+            "description": "Send money safely across India",
+            "features": [
+              "Instant Transfer",
+              "Wide Network",
+              "Reliable Service"
+            ]
+          }
+        ],
+        "guidelines": {
+          "packaging": {
+            "title": "Packaging Guidelines",
+            "items": [
+              { "heading": "Documents", "description": "Use strong envelopes and seal all edges properly" },
+              { "heading": "Fragile Items", "description": "Use bubble wrap and mark package as 'FRAGILE'" },
+              { "heading": "Heavy Items", "description": "Use strong boxes and reinforced packaging tape" }
+            ]
+          },
+          "prohibited": {
+            "title": "Prohibited Items",
+            "items": [
+              "Dangerous goods and explosives",
+              "Perishable items",
+              "Currency and jewelry",
+              "Illegal substances",
+              "Live animals"
+            ]
+          }
+        },
+        "digipin": {
+          "title": "What is DigiPin?",
+          "benefits": {
+            "title": "Benefits of DigiPin",
+            "items": [
+              "Unique alphanumeric code for each address",
+              "Easy to remember and share",
+              "Enhances delivery accuracy",
+              "Protects privacy by not revealing full address"
+            ]
+          },
+          "howToGet": {
+            "title": "How to Get Your DigiPin",
+            "steps": [
+              { "number": "1", "heading": "Visit the DigiPin Portal", "description": "Click here to get your DigiPin" },
+              { "number": "2", "heading": "Allow Your Address", "description": "Click on allow and it will fetch your current location" },
+              { "number": "3", "heading": "Verify and Confirm", "description": "Check the details and confirm your DigiPin" }
+            ]
+          }
+        }
+      
+      
+  }
+    
+  }

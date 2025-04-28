@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://D%3A/Devlopment/React/daakmadaad/app/i18n/request.js"],"sourcesContent":["\r\nimport { getRequestConfig } from 'next-intl/server';\r\n \r\nexport default getRequestConfig(async () => {\r\n  const locale = 'en'; \r\n \r\n  return {\r\n    locale,\r\n    messages: (await import(`../../messages/${locale}.json`)).default\r\n  };\r\n});"],"names":[],"mappings":";;;AACA;;uCAEe,CAAA,GAAA,2OAAA,CAAA,mBAAgB,AAAD,EAAE;IAC9B,MAAM,SAAS;IAEf,OAAO;QACL;QACA,UAAU,CAAC,oGAA6C,EAAE,OAAO;IACnE;AACF"}},
-    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 25, "column": 0}, "map": {"version":3,"sources":["file://D%3A/Devlopment/React/daakmadaad/app/layout.js"],"sourcesContent":["import { NextIntlClientProvider } from 'next-intl';\nimport { getLocale, getMessages } from 'next-intl/server';\nimport \"./globals.css\";\n\nexport default async function RootLayout({ children }) {\n  const locale = await getLocale();\n  const messages = await getMessages();\n\n  return (\n    <html lang={locale}>\n      <body>\n        <NextIntlClientProvider messages={messages}>\n          {children}\n        </NextIntlClientProvider>\n      </body>\n    </html>\n  );\n}\n"],"names":[],"mappings":";;;;AACA;AAAA;AADA;;;;;AAIe,eAAe,WAAW,EAAE,QAAQ,EAAE;IACnD,MAAM,SAAS,MAAM,CAAA,GAAA,6NAAA,CAAA,YAAS,AAAD;IAC7B,MAAM,WAAW,MAAM,CAAA,GAAA,iOAAA,CAAA,cAAW,AAAD;IAEjC,qBACE,8OAAC;QAAK,MAAM;kBACV,cAAA,8OAAC;sBACC,cAAA,8OAAC,mPAAA,CAAA,yBAAsB;gBAAC,UAAU;0BAC/B;;;;;;;;;;;;;;;;AAKX"}},
-    {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

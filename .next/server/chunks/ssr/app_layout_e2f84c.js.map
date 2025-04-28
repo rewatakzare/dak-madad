@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/takza/OneDrive/Desktop/Devlopment/React/daakmadaad/app/layout.js"],"sourcesContent":["import {NextIntlClientProvider} from 'next-intl';\nimport {getLocale, getMessages} from 'next-intl/server';\nimport './globals.css'; // Assuming you have a global CSS file\n\nexport const metadata = {\n  title: 'Dak Madad - Postal Tracking',\n  description: 'Track your posts and manage postal services',\n  icons: {\n    icon: '/favicon.ico', // Path to your favicon\n  },\n};\n\nexport default async function RootLayout({ children }) { \n  const locale = await getLocale(); \n  const messages = await getMessages(); \n  \n  return ( \n    <html lang={locale}> \n      <body> \n        <NextIntlClientProvider messages={messages}> \n          {children} \n        </NextIntlClientProvider> \n      </body> \n    </html>\n  );\n}\n"],"names":[],"mappings":";;;;;AACA;AAAA;AADA;;;;;AAIO,MAAM,WAAW;IACtB,OAAO;IACP,aAAa;IACb,OAAO;QACL,MAAM;IACR;AACF;AAEe,eAAe,WAAW,EAAE,QAAQ,EAAE;IACnD,MAAM,SAAS,MAAM,CAAA,GAAA,6NAAA,CAAA,YAAS,AAAD;IAC7B,MAAM,WAAW,MAAM,CAAA,GAAA,iOAAA,CAAA,cAAW,AAAD;IAEjC,qBACE,8OAAC;QAAK,MAAM;kBACV,cAAA,8OAAC;sBACC,cAAA,8OAAC,mPAAA,CAAA,yBAAsB;gBAAC,UAAU;0BAC/B;;;;;;;;;;;;;;;;AAKX"}},
-    {"offset": {"line": 51, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

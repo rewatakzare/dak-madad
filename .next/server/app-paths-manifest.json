@@ -1,5 +1,8 @@
 {
   "/page": "app/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
+  "/Pincode/page": "app/Pincode/page.js",
+  "/Postoffice/page": "app/Postoffice/page.js",
+  "/Calcpostage/page": "app/Calcpostage/page.js",
+  "/Awarenes/page": "app/Awarenes/page.js",
   "/Tracking/page": "app/Tracking/page.js"
 }
